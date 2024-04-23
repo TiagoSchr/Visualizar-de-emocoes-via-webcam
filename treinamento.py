@@ -6,12 +6,12 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropou
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping, ReduceLROnPlateau, TensorBoard, LearningRateScheduler
 
-# Definir os caminhos para os diretórios de dados
-base_dir = 'C:/Users/tiago/Desktop/Projeto/sentimentos/fotos'
+#Caminhos para os diretórios 
+base_dir = 'Seu diretório'
 train_dir = os.path.join(base_dir, 'train')
 test_dir = os.path.join(base_dir, 'test')
 
-# Preparar os geradores de dados
+#Geradores de dados
 train_datagen = ImageDataGenerator(
     rescale=1./255,
     rotation_range=10,
@@ -27,6 +27,7 @@ train_generator = train_datagen.flow_from_directory(
     train_dir,
     target_size=(48, 48),
     color_mode='grayscale',
+    #Utilização de memoria "batch_size=64"
     batch_size=64,
     class_mode='categorical'
 )
@@ -35,6 +36,7 @@ test_generator = test_datagen.flow_from_directory(
     test_dir,
     target_size=(48, 48),
     color_mode='grayscale',
+    #Utilização de memoria "batch_size=64"
     batch_size=64,
     class_mode='categorical'
 )
@@ -89,6 +91,6 @@ history = model.fit(
 )
 
 # Salvar o modelo treinado
-model.save('emotion_recognition_model_2.h5')
+model.save('Nome do modelo')
 
 print("Modelo treinado e salvo com sucesso.")
