@@ -3,11 +3,11 @@ import numpy as np
 import cv2
 from tensorflow.keras.models import load_model
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Suprime os logs do TensorFlow
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  #logs do TensorFlow
 
 #modelo treinado
 try:
-    model = load_model('best_emotion_recognition_model.keras')
+    model = load_model('Nome do modelo')
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 except Exception as e:
     print("Erro ao carregar o modelo:", e)
@@ -22,7 +22,7 @@ except Exception as e:
     cap.release()
     exit()
 
-#as emoções
+#As emoções
 emotions_pt = ('bravo', 'desgosto', 'medo', 'feliz', 'triste', 'surpresa', 'neutro')
 
 while True:
@@ -48,7 +48,7 @@ while True:
         cv2.putText(frame, predicted_emotion, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
-    cv2.imshow('Reconhecimento de Emocoes', frame)
+    cv2.imshow('Titulo da pagina', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
